@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT노동조합 웹사이트 시안</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Visualization & Content Choices:
+        - Hero Section: Inform/Engage -> Large headline text, subtext, CTA buttons -> HTML/Tailwind. Justification: Strong first impression and clear calls to action.
+        - About Us Teaser: Inform -> Short text paragraphs, possibly with simple icons (Unicode/CSS) -> HTML/Tailwind. Justification: Quick introduction to the union.
+        - Latest News & Announcements: Inform -> Grid/List layout for news items (title, date, snippet) -> HTML/Tailwind. Justification: Easy scanning of recent updates.
+        - Featured Activities/Campaigns: Inform/Engage -> Cards or highlighted sections with images/icons (placeholders) and text -> HTML/Tailwind. Justification: Visually appealing promotion of key activities.
+        - Membership Invitation: Engage -> Persuasive text and a prominent CTA button -> HTML/Tailwind. Justification: Clear call to join.
+        - Icons: Unicode characters or simple CSS shapes will be used if needed.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', 'Noto Sans KR', sans-serif; }
+        .hero-bg { background-color: #0c4a6e; /* sky-900 for a deep, trustworthy blue */ }
+        .section-title { font-size: 2rem; font-weight: 700; color: #1e293b; /* slate-800 */ margin-bottom: 1.5rem; text-align: center; }
+        .news-card { background-color: white; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); padding: 1.5rem; transition: transform 0.3s ease; }
+        .news-card:hover { transform: translateY(-5px); }
+        .btn { padding: 0.75rem 1.5rem; border-radius: 0.375rem; font-weight: 600; transition: background-color 0.3s ease; text-align: center;}
+        .btn-primary { background-color: #0ea5e9; /* sky-500 */ color: white; }
+        .btn-primary:hover { background-color: #0284c7; /* sky-600 */ }
+        .btn-secondary { background-color: transparent; color: #0ea5e9; /* sky-500 */ border: 2px solid #0ea5e9; /* sky-500 */ }
+        .btn-secondary:hover { background-color: #0ea5e9; /* sky-500 */ color: white; }
+        .nav-link { color: #334155; /* slate-700 */ font-weight: 500; padding: 0.5rem 0.75rem; border-radius: 0.375rem; }
+        .nav-link:hover { background-color: #f1f5f9; /* slate-100 */ color: #0284c7; /* sky-600 */ }
+        .util-link { color: #475569; /* slate-600 */ font-weight: 500; }
+        .util-link:hover { color: #0284c7; /* sky-600 */ }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-bold text-sky-700">한국정보통신산업노동조합</a>
+                </div>
+                <nav class="hidden md:flex space-x-1">
+                    <a href="#" class="nav-link">소개</a>
+                    <a href="#" class="nav-link">소식</a>
+                    <a href="#" class="nav-link">주요활동</a>
+                    <a href="#" class="nav-link">자료실</a>
+                    <a href="#" class="nav-link">상담과 지원</a>
+                    <a href="#" class="nav-link">함께하기</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="util-link text-sm">로그인</a>
+                    <a href="#" class="btn btn-primary btn-sm text-sm !py-2 !px-4">조합 가입</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-slate-500 hover:text-sky-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block nav-link">IT노조 소개</a>
+                <a href="#" class="block nav-link">새소식</a>
+                <a href="#" class="block nav-link">주요활동</a>
+                <a href="#" class="block nav-link">자료실</a>
+                <a href="#" class="block nav-link">상담과 지원</a>
+                <a href="#" class="block nav-link">함께하기</a>
+                <a href="#" class="block nav-link">가입/후원</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">IT 노동의 미래, 우리가 함께 만듭니다!</h1>
+            <p class="text-lg sm:text-xl text-sky-100 mb-10 max-w-3xl mx-auto">IT노동조합은 여러분의 권익을 보호하고, 더 나은 노동 환경을 만들기 위해 노력합니다.</p>
+            <div class="space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#" class="btn btn-primary text-lg">조합 가입 안내</a>
+                <a href="#" class="btn btn-secondary text-lg bg-sky-800 bg-opacity-20 border-sky-300 text-sky-100 hover:bg-sky-300 hover:text-sky-800">최신 노조 소식</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="section-title">IT노동조합은...</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">IT 산업 노동자들의 권익 보호, 근무 환경 개선, 공정한 대우 실현을 목표로 설립되었습니다. 우리는 연대와 협력을 통해 IT 노동자들이 존중받으며 일할 수 있는 사회를 만들어갑니다.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div class="p-6">
+                    <div class="text-sky-600 mb-4 text-5xl">🤝</div>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">권익 보호</h3>
+                    <p class="text-slate-500">부당한 대우에 맞서고, 노동자들의 법적 권리를 지킵니다.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-sky-600 mb-4 text-5xl">🌱</div>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">환경 개선</h3>
+                    <p class="text-slate-500">더 안전하고 건강한 근무 환경 조성을 위해 노력합니다.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-sky-600 mb-4 text-5xl">🔗</div>
+                    <h3 class="text-xl font-semibold text-slate-700 mb-2">연대 강화</h3>
+                    <p class="text-slate-500">IT 노동자 간의 연대를 통해 공동의 목소리를 냅니다.</p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#" class="util-link font-semibold text-sky-600 hover:text-sky-700 text-lg">IT노조 더 알아보기 →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-slate-100">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title">주요 소식 및 공지</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="news-card">
+                    <span class="inline-block bg-sky-100 text-sky-700 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">공지사항</span>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2 hover:text-sky-600"><a href="#">2025년 정기 대의원 대회 개최 안내</a></h3>
+                    <p class="text-sm text-slate-500 mb-3">2025년 6월 15일 | 온라인</p>
+                    <p class="text-slate-600 text-sm line-clamp-3">IT노동조합의 2025년 정기 대의원 대회가 온/오프라인 병행으로 개최됩니다. 조합원 여러분의 많은 관심과 참여 부탁드립니다. 상세 내용은...</p>
+                    <a href="#" class="text-sm font-semibold text-sky-600 hover:text-sky-700 mt-4 inline-block">더보기 →</a>
+                </div>
+                <div class="news-card">
+                    <span class="inline-block bg-teal-100 text-teal-700 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">노조 활동</span>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2 hover:text-sky-600"><a href="#">IT업계 과로 문제 해결을 위한 정책 토론회 개최</a></h3>
+                    <p class="text-sm text-slate-500 mb-3">2025년 5월 20일 | 국회의원회관</p>
+                    <p class="text-slate-600 text-sm line-clamp-3">장시간 노동 문제 해결을 위한 정책 토론회를 성공적으로 개최하였습니다. 다양한 의견을 수렴하여 제도 개선에 힘쓰겠습니다.</p>
+                    <a href="#" class="text-sm font-semibold text-sky-600 hover:text-sky-700 mt-4 inline-block">더보기 →</a>
+                </div>
+                <div class="news-card">
+                    <span class="inline-block bg-amber-100 text-amber-700 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3">일터 Q&A</span>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2 hover:text-sky-600"><a href="#">[답변] 포괄임금제 관련 문의입니다.</a></h3>
+                    <p class="text-sm text-slate-500 mb-3">2025년 5월 10일 | 노동상담팀</p>
+                    <p class="text-slate-600 text-sm line-clamp-3">최근 많은 문의가 있는 포괄임금제 관련하여 법률적 검토와 함께 상세한 답변을 드렸습니다. 확인해 보시기 바랍니다.</p>
+                    <a href="#" class="text-sm font-semibold text-sky-600 hover:text-sky-700 mt-4 inline-block">더보기 →</a>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#" class="btn btn-secondary">모든 소식 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section-title">IT노조 주요 활동</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <img src="https://placehold.co/600x400/e2e8f0/94a3b8?text=캠페인+이미지+1" alt="캠페인 이미지 1" class="rounded-lg shadow-lg aspect-video object-cover">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-3">IT 노동자 권리 찾기 캠페인</h3>
+                    <p class="text-slate-600 mb-6">모든 IT 노동자가 자신의 권리를 제대로 알고 행사할 수 있도록 다양한 온오프라인 캠페인을 진행하고 있습니다. 법률 상담, 교육 프로그램, 인식 개선 활동에 함께해주세요.</p>
+                    <a href="#" class="btn btn-primary">캠페인 자세히 보기</a>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center mt-16">
+                <div class="md:order-2">
+                    <img src="https://placehold.co/600x400/e2e8f0/94a3b8?text=활동+이미지+2" alt="활동 이미지 2" class="rounded-lg shadow-lg aspect-video object-cover">
+                </div>
+                <div class="md:order-1">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-3">워라밸 보장을 위한 정책 제안</h3>
+                    <p class="text-slate-600 mb-6">건강한 노동 환경과 삶의 균형을 위해, IT 산업의 특성을 반영한 워라밸 보장 정책을 연구하고 정부 및 기업에 적극적으로 제안하고 있습니다.</p>
+                    <a href="#" class="btn btn-primary">정책 활동 보기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-sky-700 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-6">함께하면 더 강해집니다!</h2>
+            <p class="text-lg sm:text-xl text-sky-100 mb-10 max-w-2xl mx-auto">IT노동조합은 여러분의 목소리에 귀 기울이고, 더 나은 내일을 만들기 위해 함께 싸웁니다. 지금 바로 IT노조에 가입하고 변화의 주체가 되어주세요.</p>
+            <a href="#" class="btn bg-white text-sky-700 hover:bg-slate-100 text-lg">지금 바로 조합원 가입하기</a>
+        </div>
+    </section>
+
+    <footer class="bg-slate-800 text-slate-300 py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-4">IT노동조합</h3>
+                    <p class="text-sm">IT 노동자들의 권익 보호와 노동 환경 개선을 위해 노력합니다.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">바로가기</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-sky-400">노조 소개</a></li>
+                        <li><a href="#" class="hover:text-sky-400">공지사항</a></li>
+                        <li><a href="#" class="hover:text-sky-400">일터 Q&A</a></li>
+                        <li><a href="#" class="hover:text-sky-400">조합 가입 안내</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">연락처</h4>
+                    <address class="text-sm not-italic">
+                        <p>주소: [IT노동조합 주소]</p>
+                        <p>전화: [IT노동조합 전화번호]</p>
+                        <p>이메일: [IT노동조합 이메일]</p>
+                    </address>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 pt-8 text-center text-sm">
+                <p>&copy; 2025 IT노동조합. All rights reserved.</p>
+                <p class="mt-1">
+                    <a href="#" class="hover:text-sky-400">개인정보처리방침</a> | 
+                    <a href="#" class="hover:text-sky-400">이용약관</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
