@@ -1,0 +1,33 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  # 라이믹스 애플리케이션 서비스 (Nginx + PHP-FPM)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rhymix_app
+    ports:
+      - "8000:80" # PC의 8000번 포트를 컨테이너의 80번 포트에 연결
+    volumes:
+      - /home/jtjoo/web/itunion.or.kr/rhymix  # PC의 rhymix 폴더를 컨테이너의 웹 루트와 동기화
+    depends_on:
+      - db
+    restart: always
+
+  # MariaDB 데이터베이스 서비스
+  db:
+    image: mariadb:10.6
+    container_name: rhymix_db
+    environment:
+      MYSQL_DATABASE: rhymix_db
+      MYSQL_USER: itunion
+      MYSQL_PASSWORD: 7EN3eeZEvMj1Eq # 매우 강력한 비밀번호로 변경하세요
+      MYSQL_ROOT_PASSWORD: JKyjggwOCdpRJjYB # 매우 강력한 루트 비밀번호로 변경하세요
+    volumes:
+      - db_data:/var/lib/mysql # DB 데이터를 PC에 영구 저장
+    restart: always
+
+volumes:
+  db_data:
