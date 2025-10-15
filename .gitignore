@@ -1,6 +1,5 @@
 /itu_migration/*
-rhymix
-rhymix/rhymix
+/rhymix/*
 *.tgz
 *.zip
 *.tar.gz
