@@ -1,32 +1,67 @@
-# docker-compose.yml
 version: '3.8'
 
+# Define a network for services to communicate reliably
+networks:
+  itunion_net:
+    driver: bridge
+
 services:
-  # 라이믹스 애플리케이션 서비스 (Nginx + PHP-FPM)
+  # XE Application Service (Nginx + PHP-FPM)
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: itu_migration
+    container_name: itunion_app
     ports:
-      - "8000:80" # PC의 8000번 포트를 컨테이너의 80번 포트에 연결
+      - "8000:80"
     volumes:
-      - /home/jtjoo/web/itunion.or.kr/itu_migration/home4/fade3blk/http:/var/www/html # PC의 rhymix 폴더를 컨테이너의 웹 루트와 동기화
+      # Using a relative path is more portable and recommended
+      - ./home4/fade3blk/http:/var/www/html
+    networks:
+      - itunion_net
+    # This now waits for the db to be truly healthy before starting
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: always
 
-  # MariaDB 데이터베이스 서비스
+  # MariaDB Database Service with Healthcheck
   db:
     image: mariadb:10.6
-    container_name: itu_migration_db
+    container_name: itunion_db
     environment:
       MYSQL_DATABASE: itu_migration_db
       MYSQL_USER: itunion
-      MYSQL_PASSWORD: 7EN3eeZEvMj1Eq # 매우 강력한 비밀번호로 변경하세요
-      MYSQL_ROOT_PASSWORD: JKyjggwOCdpRJjYB # 매우 강력한 루트 비밀번호로 변경하세요
+      MYSQL_PASSWORD: 7EN3eeZEvMj1Eq
+      MYSQL_ROOT_PASSWORD: JKyjggwOCdpRJjYB
     volumes:
-      - db_data:/var/lib/mysql # DB 데이터를 PC에 영구 저장
+      - db_data:/var/lib/mysql
+    networks:
+      - itunion_net
+    # This is the key fix: a healthcheck to ensure the database is ready
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pJKyjggwOCdpRJjYB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  # phpMyAdmin Service (Simplified and reliable)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: itunion_pma
+    ports:
+      - "8081:80"
+    environment:
+      # We can go back to this simpler method because of the healthcheck
+      PMA_HOST: db
+      UPLOAD_LIMIT: 2048M
+    networks:
+      - itunion_net
+    # This also waits for the db to be healthy
+    depends_on:
+      db:
+        condition: service_healthy
     restart: always
 
 volumes:
