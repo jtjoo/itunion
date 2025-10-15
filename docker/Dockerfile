@@ -25,6 +25,7 @@ RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS \
 
 # Nginx 설정 파일 복사
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY xe.conf /etc/nginx/conf.d/xe.conf
 
 # 웹 루트 디렉토리 생성 및 권한 설정
 RUN mkdir -p /var/www/html && \

@@ -11,7 +11,7 @@ services:
     ports:
       - "8000:80" # PC의 8000번 포트를 컨테이너의 80번 포트에 연결
     volumes:
-      - /home/jtjoo/web/itunion.or.kr/rhymix:/var/www/html # PC의 rhymix 폴더를 컨테이너의 웹 루트와 동기화
+      - /home/jtjoo/web/itunion.or.kr/rx:/var/www/html # PC의 rhymix 폴더를 컨테이너의 웹 루트와 동기화
     depends_on:
       - db
     restart: always

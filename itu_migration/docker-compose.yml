@@ -55,7 +55,7 @@ services:
     environment:
       # We can go back to this simpler method because of the healthcheck
       PMA_HOST: db
-      UPLOAD_LIMIT: 2048M
+      UPLOAD_LIMIT: 4096M
     networks:
       - itunion_net
     # This also waits for the db to be healthy
