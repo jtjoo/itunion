@@ -53,9 +53,12 @@ services:
     ports:
       - "8081:80"
     environment:
-      # We can go back to this simpler method because of the healthcheck
       PMA_HOST: db
-      UPLOAD_LIMIT: 2048M
+      # These PHP settings override the defaults inside the container
+      PHP_UPLOAD_MAX_FILESIZE: 2G
+      PHP_POST_MAX_SIZE: 2G
+      PHP_MEMORY_LIMIT: 4G
+      PHP_MAX_EXECUTION_TIME: 3600
     networks:
       - itunion_net
     # This also waits for the db to be healthy
